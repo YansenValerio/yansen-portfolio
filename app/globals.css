@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: 'Fraunces', serif;
+  --font-inter: 'Inter', sans-serif;
+  --color-brand: #5b4fce;
+  --color-brand-light: #7b6fff;
+  --color-lavender: #f0eeff;
+  --color-dark: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  overflow-x: hidden;
+}
+
+.font-fraunces {
+  font-family: 'Fraunces', serif;
+}
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Lanyard Card ── */
+.lanyard-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 800px;
+  cursor: default;
+  user-select: none;
+}
+
+/* Metal clip (SVG container) */
+.lanyard-clip {
+  display: block;
+  margin-bottom: -2px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  flex-shrink: 0;
+}
+
+/* Strap */
+.lanyard-strap {
+  position: relative;
+  width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.lanyard-strap-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #4a3fb0 0%,
+    #6b5cdb 35%,
+    #7b6fff 50%,
+    #6b5cdb 65%,
+    #4a3fb0 100%
+  );
+}
+.lanyard-strap-text {
+  position: relative;
+  z-index: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'Inter', sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Card */
+.lanyard-card {
+  position: relative;
+  width: 200px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 18px 18px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.45),
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  /* subtle card sheen */
+  background: linear-gradient(145deg, #ffffff 0%, #f4f4f8 100%);
+}
+
+/* Hole punch */
+.lanyard-hole {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e0e0e8;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
+}
+
+/* Photo area */
+.lanyard-photo-wrapper {
+  width: 140px;
+  height: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+.lanyard-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(30%) contrast(1.05);
+}
+
+/* Name & Role */
+.lanyard-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0;
+}
+.lanyard-role {
+  font-size: 10px;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: -4px 0 0;
+}
+
+/* Barcode decoration */
+.lanyard-barcode {
+  width: 100%;
+  padding: 8px 0 2px;
+  border-top: 1px solid #ebebf0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.lanyard-barcode-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+.lanyard-bar {
+  width: 3px;
+  background: #222;
+  border-radius: 1px;
+  opacity: 0.75;
+}
