@@ -151,6 +151,7 @@ export const portfolio: PortfolioItem[] = [
       "/portfolio/portfolio-2.jpg",
       "/portfolio/portfolio-3.jpg",
     ],
+    liveUrl: "https://yansen-portfolio.vercel.app/",
   },
   {
     number: "05",
