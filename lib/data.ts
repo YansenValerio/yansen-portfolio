@@ -171,25 +171,25 @@ export const portfolio: PortfolioItem[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Michael J",
-    role: "CEO, TechWave",
-    avatar: "https://picsum.photos/seed/avatar1/80/80",
+    name: "Alfa",
+    role: "Founder, Notic",
+    avatar: "https://picsum.photos/seed/alfa/80/80",
     quote:
-      "Working with Nahid was an absolute game-changer. Their creativity, attention to detail, and dedication to delivering top-quality work exceeded my expectations. The entire process was smooth, and the final result was beyond what I imagined. Looking forward to collaborating again!",
+      "Yansen brought Notic's story to life online. He understood our sustainability mission from day one and turned it into a fast, beautiful website that genuinely represents the brand. Communication was clear and he delivered exactly what we needed — couldn't be happier.",
   },
   {
-    name: "Sarah K",
-    role: "Founder, DesignLab",
-    avatar: "https://picsum.photos/seed/avatar2/80/80",
+    name: "Sani",
+    role: "Marketer, Greeva",
+    avatar: "https://picsum.photos/seed/sani/80/80",
     quote:
-      "Nahid transformed our brand identity completely. The designs were stunning, modern, and perfectly captured our vision. The turnaround time was impressive, and the communication throughout was exceptional. Highly recommend!",
+      "Working with Yansen on Greeva was effortless. He took our idea for a green marketplace and shaped it into a clean, trustworthy shopping experience that our customers love. Thoughtful, detail-oriented, and always one step ahead.",
   },
   {
-    name: "David R",
-    role: "Product Manager, Innovate Co",
-    avatar: "https://picsum.photos/seed/avatar3/80/80",
+    name: "Kevin",
+    role: "Content Creator",
+    avatar: "https://picsum.photos/seed/kevin/80/80",
     quote:
-      "Outstanding work! The UI/UX designs delivered were both beautiful and functional. Our users immediately noticed the improvement, and our conversion rates went up significantly. A true design partner.",
+      "Yansen just gets it. He listens, he thinks ahead, and he ships work that looks and feels premium. Every project we've collaborated on came back better than I pictured. A rare mix of technical skill and real creative taste.",
   },
 ];
 
