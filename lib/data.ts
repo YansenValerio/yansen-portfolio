@@ -114,14 +114,15 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     number: "02",
-    title: "Marketplace",
+    title: "Greeva — Green Marketplace",
     description:
-      "Designing multi-vendor platforms that balance discovery, trust, and transaction clarity. Every touchpoint optimized for buyers and sellers alike.",
-    tags: ["E-Commerce", "UI/UX", "Product Listing", "Checkout Flow"],
+      "A curated marketplace for Indonesia's local sustainable brands — connecting eco-conscious shoppers with circular-economy makers. Features a filterable product catalog, detailed product pages with variant selection, a slide-out cart, and full authentication. Designed end-to-end around discovery, trust, and a clean buying flow.",
+    tags: ["E-Commerce", "Product Catalog", "Cart & Auth", "Sustainability"],
     images: [
       "/portfolio/marketplace-1.jpg",
       "/portfolio/marketplace-2.jpg",
       "/portfolio/marketplace-3.jpg",
+      "/portfolio/marketplace-4.jpg",
     ],
     liveUrl: "https://behance.net",
   },
@@ -155,16 +156,16 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     number: "05",
-    title: "Mobile App",
+    title: "Jejalah — Gamified City Explorer",
     description:
-      "Native-feel mobile experiences designed around thumb zones, gesture clarity, and delight. From onboarding flows to core feature screens.",
-    tags: ["iOS", "Android", "Interaction Design", "Prototyping"],
+      "A gamified mobile app that turns exploring Pekalongan into a quest. Players complete daily, weekly, and story missions across culinary, culture, and nature — earning XP, leveling up, unlocking badges, and climbing the leaderboard. Built with React Native & Expo, featuring auth (email + GitHub), player profiles, and a Trophy Room.",
+    tags: ["React Native", "Expo", "Gamification", "Travel"],
     images: [
       "/portfolio/mobile-1.jpg",
       "/portfolio/mobile-2.jpg",
       "/portfolio/mobile-3.jpg",
     ],
-    liveUrl: "https://behance.net",
+    liveUrl: "https://jejalah-web.vercel.app/",
   },
 ];
 
