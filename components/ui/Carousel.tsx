@@ -80,7 +80,8 @@ export default function Carousel({
   round = false,
 }: CarouselProps): JSX.Element {
   const containerPadding = 16;
-  const itemWidth = baseWidth - containerPadding * 2;
+  const [contentWidth, setContentWidth] = useState<number>(baseWidth - containerPadding * 2);
+  const itemWidth = contentWidth;
   const trackItemOffset = itemWidth + GAP;
   const itemsForRender = useMemo(() => {
     if (!loop) return items;
@@ -95,6 +96,19 @@ export default function Carousel({
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Measure the actual rendered content width so the carousel fits any parent
+  // (the fixed baseWidth is treated as a max-width only). Keeps each slide centered.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) setContentWidth(entry.contentRect.width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
       const container = containerRef.current;
@@ -209,7 +223,8 @@ export default function Carousel({
         round ? 'rounded-full border border-brand/15' : 'rounded-[24px] border border-brand/15 bg-white/40'
       }`}
       style={{
-        width: `${baseWidth}px`,
+        width: '100%',
+        maxWidth: `${baseWidth}px`,
         ...(round && { height: `${baseWidth}px` }),
       }}
     >
@@ -244,7 +259,7 @@ export default function Carousel({
         ))}
       </motion.div>
       <div className={`flex w-full justify-center ${round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''}`}>
-        <div className="mt-4 flex w-[150px] justify-between px-8">
+        <div className="mt-4 flex max-w-full flex-wrap justify-center gap-2 px-2">
           {items.map((_, index) => (
             <motion.div
               key={index}

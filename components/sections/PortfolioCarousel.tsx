@@ -172,6 +172,98 @@ function PortfolioSlide({ item, isActive }: SlideProps) {
   );
 }
 
+function PortfolioCardMobile({
+  item,
+  index,
+  total,
+}: {
+  item: PortfolioItem;
+  index: number;
+  total: number;
+}) {
+  const [imgIndex, setImgIndex] = useState(0);
+  const hasMulti = item.images.length > 1;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+    >
+      <div className="relative aspect-[4/3] w-full bg-gray-50">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={imgIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={item.images[imgIndex]}
+              alt={`${item.title} preview`}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 font-mono text-[10px] text-white/90 backdrop-blur-sm">
+          {item.number} / {String(total).padStart(2, "0")}
+        </div>
+
+        {hasMulti && (
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5">
+            {item.images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setImgIndex(i)}
+                aria-label={`Image ${i + 1}`}
+                className={`rounded-full transition-all duration-300 ${
+                  i === imgIndex ? "h-1.5 w-5 bg-white" : "h-1.5 w-1.5 bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="p-6">
+        <h3 className="mb-3 text-2xl font-bold font-inter leading-tight text-dark">
+          {item.title}
+        </h3>
+        <p className="mb-5 font-inter text-sm leading-relaxed text-gray-400">
+          {item.description}
+        </p>
+        <div className="mb-6 flex flex-wrap gap-2">
+          {item.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-gray-200 px-3 py-1 font-inter text-[11px] text-gray-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        {item.liveUrl && (
+          <a
+            href={item.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-dark px-5 py-3 text-sm font-inter font-medium text-white transition-transform active:scale-95"
+          >
+            View Project <ArrowUpRight size={15} />
+          </a>
+        )}
+      </div>
+    </motion.article>
+  );
+}
+
 export default function PortfolioCarousel({ items }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -206,18 +298,23 @@ export default function PortfolioCarousel({ items }: Props) {
   });
 
   return (
-    <div ref={scrollRef} style={{ height: `${items.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen overflow-hidden bg-white">
-        {/* focal glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-center justify-center"
-        >
-          <div className="h-[600px] w-[600px] rounded-full bg-brand-light/8 blur-3xl" />
-        </div>
+    <>
+      {/* Desktop: scroll-driven horizontal slide strip (reserves N×100vh of scroll) */}
+      <div
+        ref={scrollRef}
+        className="hidden md:block"
+        style={{ height: `${items.length * 100}vh` }}
+      >
+        <div className="sticky top-0 h-screen overflow-hidden bg-white">
+          {/* focal glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          >
+            <div className="h-[600px] w-[600px] rounded-full bg-brand-light/8 blur-3xl" />
+          </div>
 
-        {/* Desktop: horizontal slide strip */}
-        <div className="hidden md:block absolute inset-0">
+          <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0 flex"
             style={{ x, width: `${items.length * 100}vw` }}
@@ -246,59 +343,23 @@ export default function PortfolioCarousel({ items }: Props) {
               style={{ width: progressWidth }}
             />
           </div>
-        </div>
-
-        {/* Mobile: horizontal scroll-snap */}
-        <div className="md:hidden h-full flex items-center">
-          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 px-4 w-full scrollbar-hide">
-            {items.map((item) => (
-              <div
-                key={item.number}
-                className="snap-center shrink-0 w-[75vw] first:ml-[12.5vw] last:mr-[12.5vw]"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-500 font-inter mb-3 text-center">
-                  {item.title}
-                </p>
-                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src={item.images[0]}
-                    alt={item.title}
-                    fill
-                    sizes="75vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute top-3 left-3 text-[10px] font-mono text-white/80 bg-black/30 backdrop-blur-sm rounded-full px-2 py-0.5">
-                    {item.number}
-                  </div>
-                </div>
-                <p className="text-gray-400 font-inter text-sm leading-relaxed mt-5">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="border border-gray-200 rounded-full text-[11px] px-3 py-1 text-gray-500 font-inter"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                {item.liveUrl && (
-                  <a
-                    href={item.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-dark px-5 py-2.5 text-sm font-inter font-medium text-white"
-                  >
-                    View Project <ArrowUpRight size={14} />
-                  </a>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile: comfortable vertical card stack (no forced 100vh scrolling) */}
+      <div className="bg-white px-5 pb-20 pt-2 md:hidden">
+        <div className="mx-auto flex max-w-md flex-col gap-8">
+          {items.map((item, i) => (
+            <PortfolioCardMobile
+              key={item.number}
+              item={item}
+              index={i}
+              total={items.length}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
