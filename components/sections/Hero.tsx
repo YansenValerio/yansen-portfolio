@@ -101,11 +101,10 @@ export default function Hero() {
 
       {/* ── 2. HERO PHOTO (rises from bottom after headline) ── */}
       <motion.div
-        className="absolute bottom-0 z-10"
+        className="absolute bottom-0 z-10 h-[56vh] md:h-[70vh]"
         style={{
           left: '50%',
           transform: 'translateX(-50%)',
-          height: '70vh',
         }}
         initial={{ opacity: 0, y: 120 }}
         animate={{ opacity: 1, y: 0 }}
@@ -114,10 +113,10 @@ export default function Hero() {
         <img
           src="/Untitled.png"
           alt="Product Designer"
+          className="max-w-none h-[62vh] md:h-[78vh] object-contain"
           style={{
             left: '50%',
             transform: 'translateX(-50%)',
-            height: '78vh',
           }}
         />
       </motion.div>

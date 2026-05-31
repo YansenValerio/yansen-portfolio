@@ -42,10 +42,10 @@ const techStacks = [
 export default function About() {
   return (
     <section id="about" className="bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row min-h-[760px]">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:min-h-[760px]">
 
         {/* Left: Lanyard 3D — fully contained within section, strap hangs from top of section */}
-        <div className="relative w-full md:w-1/2 min-h-[760px] bg-white">
+        <div className="relative w-full h-[440px] md:h-auto md:w-1/2 md:min-h-[760px] bg-white">
           <Lanyard3D position={[0, -1.5, 14]} gravity={[0, -40, 0]} fov={18} transparent />
         </div>
 
