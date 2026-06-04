@@ -19,9 +19,10 @@ interface Props {
 interface SlideProps {
   item: PortfolioItem;
   isActive: boolean;
+  total: number;
 }
 
-function PortfolioSlide({ item, isActive }: SlideProps) {
+function PortfolioSlide({ item, isActive, total: slideCount }: SlideProps) {
   const [imgIndex, setImgIndex] = useState(0);
   const total = item.images.length;
   const isMobile = item.number === "05";
@@ -135,7 +136,7 @@ function PortfolioSlide({ item, isActive }: SlideProps) {
               className="flex flex-col max-w-md"
             >
               <p className="text-[11px] uppercase tracking-[0.3em] text-gray-400 font-inter mb-5">
-                {item.number} / {String(5).padStart(2, "0")}
+                {item.number} / {String(slideCount).padStart(2, "0")}
               </p>
               <h3 className="text-4xl md:text-5xl font-bold font-inter text-dark leading-tight mb-6">
                 {item.title}
@@ -320,7 +321,7 @@ export default function PortfolioCarousel({ items }: Props) {
             style={{ x, width: `${items.length * 100}vw` }}
           >
             {items.map((item, i) => (
-              <PortfolioSlide key={item.number} item={item} isActive={i === activeIndex} />
+              <PortfolioSlide key={item.number} item={item} isActive={i === activeIndex} total={items.length} />
             ))}
           </motion.div>
 

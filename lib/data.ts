@@ -167,6 +167,18 @@ export const portfolio: PortfolioItem[] = [
     ],
     liveUrl: "https://jejalah-web.vercel.app/",
   },
+  {
+    number: "06",
+    title: "ResumeIQ — SaaS",
+    description:
+      "An AI-powered resume analyzer that helps job seekers pass ATS screening. Upload a resume against a job description and get real-time 0–100 scoring across keywords, structure, action verbs, and quantified impact — plus section-specific feedback and a downloadable PDF report. Bilingual (Indonesian & English), privacy-first, and built as a complete end-to-end SaaS.",
+    tags: ["Next.js", "AI / LLM", "ATS Analyzer", "SaaS"],
+    images: [
+      "/portfolio/resumeiq-1.png",
+      "/portfolio/resumeiq-2.png",
+    ],
+    liveUrl: "https://resumeiq-ruddy.vercel.app/",
+  },
 ];
 
 export const testimonials: Testimonial[] = [
